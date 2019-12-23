@@ -1,15 +1,28 @@
 import { Routes } from '@angular/router';
-
-import { HomeComponent } from '@src/app/home/home.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { ResourcesComponent } from './resources/resources.component';
+import { OrdersComponent } from './orders/orders.component';
 
 export const routes: Routes = [
   {
-      path: '',
-      redirectTo: '/home',
-      pathMatch: 'full',
+    path: '',
+    redirectTo: '/tabs',
+    pathMatch: 'full'
   },
   {
-      path: 'home',
-      component: HomeComponent,
-  },
+    path: 'tabs',
+    component: TabsComponent,
+    children: [
+      {
+        path: 'resources',
+        component: ResourcesComponent,
+        outlet: 'resources'
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+        outlet: 'orders'
+      }
+    ]
+  }
 ];
